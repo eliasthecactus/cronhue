@@ -68,6 +68,46 @@ python main.py --bridge-ip <BRIDGE_IP> --device-ids <DEVICE_IDS> --interval <INT
 | `--duration`      | Time (in minutes) for which the lights remain ON during each cycle.                               | `5`                             |
 | `--debug`         | Prints details of all lights (IDs, names, room names, etc.) without turning lights ON or OFF.     | N/A                             |
 
+## Docker Deployment
+
+### Debug Mode for Setup
+
+1. Edit the debug.docker-compose.yml file and set the BRIDGE_IP environment variable to the IP address of your Hue Bridge.
+2. Press the button on the Philips Hue Bridge to authorize the app.
+3. Run the following command to fetch the lights:
+```bash
+docker-compose -f debug.docker-compose.yml up
+```
+4. This will output the available lights, including their IDs, names, and room assignments.
+
+### Run the Scheduler
+
+After verifying the lights, configure docker-compose.yml with your desired settings:
+1. Open docker-compose.yml and edit the following environment variables:
+- BRIDGE_IP: IP address of the Hue Bridge.
+- DEVICE_IDS, DEVICE_NAMES, ROOM_IDS, ROOM_NAMES: Specify lights or rooms to control.
+- INTERVAL, DURATION: Scheduling interval and duration in minutes.
+2. Start the scheduler:
+```bash
+docker-compose up -d
+```
+3. Stop the scheduler:
+```bash
+docker-compose down
+```
+
+### Docker Environment Variables
+
+| Variable            | Description                                                                                              | Example                          |
+|---------------------|----------------------------------------------------------------------------------------------------------|----------------------------------|
+| `BRIDGE_IP`         | **Required**: The IP address of your Philips Hue Bridge.                                                | `192.168.1.100`                 |
+| `DEVICE_IDS`        | Comma-separated list of light IDs to control.                                                           | `9,13`                          |
+| `DEVICE_NAMES`      | Comma-separated list of light names (case-insensitive) to control.                                      | `Lamp1,Lamp2`                   |
+| `ROOM_IDS`          | Comma-separated list of room IDs to control.                                                            | `81,82`                         |
+| `ROOM_NAMES`        | Comma-separated list of room names (case-insensitive) to control.                                       | `Living room,Bedroom`           |
+| `INTERVAL`          | **Required**: Total time (in minutes) for one cycle (lights ON + lights OFF).                           | `15`                            |
+| `DURATION`          | **Required**: Time (in minutes) for which the lights remain ON during each cycle.                       | `5`                             |
+
 ---
 
 ### Examples
