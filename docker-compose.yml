@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  hue-scheduler:
+    build: .
+    container_name: cronhue
+    environment:
+      BRIDGE_IP: 192.168.5.53
+      DEVICE_IDS: 13,14
+      INTERVAL: 2
+      DURATION: 1
