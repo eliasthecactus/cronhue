@@ -52,7 +52,7 @@ The **Philips Hue Scheduler** is a Python script that allows you to control Phil
 ### Basic Command
 
 ```
-python device_scheduler.py --bridge-ip <BRIDGE_IP> --device-ids <DEVICE_IDS> --interval <INTERVAL> --duration <DURATION>
+python main.py --bridge-ip <BRIDGE_IP> --device-ids <DEVICE_IDS> --interval <INTERVAL> --duration <DURATION>
 ```
 
 ### Arguments
@@ -75,23 +75,23 @@ python device_scheduler.py --bridge-ip <BRIDGE_IP> --device-ids <DEVICE_IDS> --i
 #### Turn Lights On and Off
 1. Turn on lights with IDs `9` and `13` for 1 minute every 2 minutes:
    ```bash
-   python device_scheduler.py --bridge-ip 192.168.1.100 --device-ids 9,13 --interval 2 --duration 1
+   python main.py --bridge-ip 192.168.1.100 --device-ids 9,13 --interval 2 --duration 1
    ```
 
 2. Turn on all lights in the "Living room" for 5 minutes every 15 minutes:
    ```bash
-   python device_scheduler.py --bridge-ip 192.168.1.100 --room-names "Living room" --interval 15 --duration 5
+   python main.py --bridge-ip 192.168.1.100 --room-names "Living room" --interval 15 --duration 5
    ```
 
 3. Turn on lights in the "Bedroom" and "Office" using room IDs for 10 minutes every 30 minutes:
    ```bash
-   python device_scheduler.py --bridge-ip 192.168.1.100 --room-ids 81,83 --interval 30 --duration 10
+   python main.py --bridge-ip 192.168.1.100 --room-ids 81,83 --interval 30 --duration 10
    ```
 
 #### Debug Mode
 To print all available lights and their details:
    ```bash
-   python device_scheduler.py --bridge-ip 192.168.1.100 --debug
+   python main.py --bridge-ip 192.168.1.100 --debug
    ```
 
 ---
